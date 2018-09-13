@@ -1,0 +1,27 @@
+{% extends 'app.twig' %}
+{% set page = 'staff' %}
+
+{% block title %}Pracownik{% endblock %}
+
+{% block content %}
+    <h1 class="mt-5 mb-4">Pracownik #{{ worker.id }}</h1>
+    <form>
+    <div class="form-group">
+        <label>Imię</label>
+        <input class="form-control" name="first_name" value="{{ worker.first_name }}" >
+    </div>
+    <div class="form-group">
+        <label>Nazwisko</label>
+        <input class="form-control" name="first_name" value="{{ worker.last_name }}" >
+    </div>
+    <div class="form-group">
+        <label>Adres</label>
+        <textarea class="form-control" name="address">{{ worker.address }}</textarea>
+    </div>
+    <div class="form-group">
+        <label>Telefon</label>
+        <input class="form-control" name="phone" value="{{ worker.phone }}" >
+    </div>
+    <button type="submit" class="btn btn-primary">Edytuj</button>
+    </form>
+{% endblock %}
