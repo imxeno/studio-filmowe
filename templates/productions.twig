@@ -24,7 +24,8 @@
                     <td>{{ production.genre }}</td>
                     <td>{{ production.costs }}</td>
                     <td>{{ production.premiere }}</td>
-                    <td><a href="clients.php?id={{ production.contracting_id }}">{{ production.contracting_id }}</a></td>
+                    <td><a href="clients.php?id={{ production.contracting_id }}">
+                    {{production.contracting_first_name}} {{production.contracting_last_name}} (#{{ production.contracting_id }}}</a></td>
                 </tr>
             {% endfor %}
         </tbody>
