@@ -1,0 +1,27 @@
+{% extends 'base.twig' %}
+
+{% block title %}Login{% endblock %}
+
+{% block styles %}
+    {{ parent() }}
+    <link rel="stylesheet" href="css/login.css"/>
+{% endblock %}
+
+{% block body %}
+    <form class="form-signin text-center">
+        <img class="mb-4" src="img/logo.png" alt="" width="72" height="72">
+        <h1 class="h3 mb-3 font-weight-normal">Studio filmowe "Beta"</h1>
+        <label for="login" class="sr-only">Nazwa użytkownika</label>
+        <input type="text" name="login" id="login" class="form-control" placeholder="Nazwa użytkownika" required="required" autofocus="autofocus">
+        <label for="password" class="sr-only">Hasło</label>
+        <input type="password" name="password" id="password" class="form-control" placeholder="Hasło" required="required">
+        <div class="checkbox mb-3">
+            <label>
+                <input type="checkbox" name="remember" value="remember-me">
+                Zapamiętaj mnie
+            </label>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Zaloguj</button>
+        <p class="mt-5 mb-3 text-muted">&copy; 2018 Krzysztof Adamczyk</p>
+    </form>
+{% endblock %}

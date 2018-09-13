@@ -1,0 +1,14 @@
+{
+    "name": "krzysztof/studio",
+    "type": "project",
+    "license": "ISC",
+    "authors": [
+        {
+            "name": "Krzysztof Adamczyk",
+            "email": "krzysztof.adamczyk.1995@gmail.com"
+        }
+    ],
+    "require": {
+        "twig/twig": "^2.0"
+    }
+}
