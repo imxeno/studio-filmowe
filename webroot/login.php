@@ -9,7 +9,10 @@ if(isset($_POST["login"]) && isset($_POST["password"])) {
     $stmt->execute();
     if($stmt->fetch()) {
         $_SESSION["id"] = $id;
-        redirect("index.php");
+        if(isset($_GET["return"]))
+            redirect($_GET["return"]);
+        else
+            redirect("index.php");
     }
     $stmt->close();
     echo $twig->render('login.twig', array("error" => true));

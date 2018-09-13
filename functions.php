@@ -15,3 +15,10 @@ $DB->set_charset("utf8mb4");
 function redirect($page) {
     header("Location: " . $page);
 }
+
+function redirect_if_not_logged_in() {
+    if(!$_SESSION["id"]) {
+        redirect("login.php?return=" . urlencode($_SERVER["REQUEST_URI"]));
+        exit();
+    }
+}
