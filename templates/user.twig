@@ -1,0 +1,33 @@
+{% extends 'app.twig' %}
+{% set page = 'user' %}
+
+{% block title %}Ustawienia{% endblock %}
+
+{% block content %}
+    <h1 class="mt-5">#{{user.id}}
+    {{user.first_name}}
+    {{user.last_name}}</h1>
+    {% if success %}
+        <div class="alert alert-success">{{success}}</div>
+    {% endif %}
+    {% if error %}
+        <div class="alert alert-danger">{{error}}</div>
+    {% endif %}
+    <p class="lead">Zmień hasło:</p>
+    <form method="POST">
+        <div class="form-group">
+            <label>Stare hasło</label>
+            <input type="password" class="form-control" name="old_password" />
+        </div>
+        <div class="form-group">
+            <label>Nowe hasło</label>
+            <input type="password" class="form-control" name="password" />
+        </div>
+        <div class="form-group">
+            <label>Nowe hasło (ponownie)</label>
+            <input type="password" class="form-control" name="password_2" />
+        </div>
+        <button type="submit" class="btn btn-primary">Zmień hasło</button>
+    </form>
+    
+{% endblock %}
