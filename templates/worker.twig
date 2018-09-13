@@ -22,6 +22,15 @@
         <label>Telefon</label>
         <input class="form-control" name="phone" value="{{ worker.phone }}" >
     </div>
+    <div class="form-group">
+        <label>Stanowisko</label>
+        <select name="position" class="form-control">
+            {% for position in positions %}
+                <option value="{{position.id}}" {{position.id == worker.position ? 'selected'}}>{{position.name}}</option>
+            {% endfor %}
+        </select>
+    </div>
     <button type="submit" class="btn btn-primary">Edytuj</button>
+    <button type="submit" class="btn btn-danger">Usuń</button>
     </form>
 {% endblock %}

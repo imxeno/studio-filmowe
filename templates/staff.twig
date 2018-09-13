@@ -4,16 +4,23 @@
 {% block title %}Pracownicy{% endblock %}
 
 {% block content %}
-    <h1 class="mt-5 mb-4">Pracownicy</h1>
+    <div class="row mt-5 mb-4">
+        <div class="col">
+            <h1>Pracownicy</h1>
+        </div>
+        <div class="col text-right">
+            <button class="btn btn-success">Dodaj</button>
+        </div>
+    </div>
     <table class="table">
         <thead>
             <tr>
-            <th scope="col">#</th>
-            <th scope="col">Imię</th>
-            <th scope="col">Nazwisko</th>
-            <th scope="col">Stanowisko</th>
-            <th scope="col">Adres</th>
-            <th scope="col">Szczegóły</th>
+                <th scope="col">#</th>
+                <th scope="col">Imię</th>
+                <th scope="col">Nazwisko</th>
+                <th scope="col">Stanowisko</th>
+                <th scope="col">Adres</th>
+                <th scope="col">Szczegóły</th>
             </tr>
         </thead>
         <tbody>
@@ -24,7 +31,9 @@
                     <td>{{ worker.last_name }}</td>
                     <td>{{ worker.position_name }}</td>
                     <td>{{ worker.address }}</td>
-                    <td><a href="staff.php?id={{worker.id}}">>>></a></td>
+                    <td>
+                        <a href="staff.php?id={{worker.id}}">Zobacz</a>
+                    </td>
                 </tr>
             {% endfor %}
         </tbody>
