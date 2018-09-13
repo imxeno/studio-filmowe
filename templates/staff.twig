@@ -1,0 +1,32 @@
+{% extends 'app.twig' %}
+{% set page = 'staff' %}
+
+{% block title %}Pracownicy{% endblock %}
+
+{% block content %}
+    <h1 class="mt-5 mb-4">Pracownicy</h1>
+    <table class="table">
+        <thead>
+            <tr>
+            <th scope="col">#</th>
+            <th scope="col">Imię</th>
+            <th scope="col">Nazwisko</th>
+            <th scope="col">Stanowisko</th>
+            <th scope="col">Adres</th>
+            <th scope="col">Szczegóły</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for worker in staff %}
+                <tr>
+                    <td>{{ worker.id }}</td>
+                    <td>{{ worker.first_name }}</td>
+                    <td>{{ worker.last_name }}</td>
+                    <td>{{ worker.position_name }}</td>
+                    <td>{{ worker.address }}</td>
+                    <td><a href="staff.php?id={{worker.id}}">>>></a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

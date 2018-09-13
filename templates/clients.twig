@@ -1,0 +1,30 @@
+{% extends 'app.twig' %}
+{% set page = 'clients' %}
+
+{% block title %}Klienci{% endblock %}
+
+{% block content %}
+    <h1 class="mt-5 mb-4">Klienci</h1>
+    <table class="table">
+        <thead>
+            <tr>
+            <th scope="col">#</th>
+            <th scope="col">Imię</th>
+            <th scope="col">Nazwisko</th>
+            <th scope="col">Adres</th>
+            <th scope="col">Szczegóły</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for client in clients %}
+                <tr>
+                    <td>{{ client.id }}</td>
+                    <td>{{ client.first_name }}</td>
+                    <td>{{ client.last_name }}</td>
+                    <td>{{ client.address }}</td>
+                    <td><a href="clients.php?id={{client.id}}">>>></a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

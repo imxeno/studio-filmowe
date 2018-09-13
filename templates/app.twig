@@ -1,0 +1,48 @@
+{% extends 'base.twig' %}
+
+{% block styles %}
+    {{ parent() }}
+    <link rel="stylesheet" href="css/main.css"/>
+{% endblock %}
+
+{% block body %}
+   <header>
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <a class="navbar-brand" href="/">Studio filmowe "Beta"</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item {{ page == 'dashboard' ? 'active' }}">
+              <a class="nav-link" href="index.php">Dashboard</span></a>
+            </li>
+            <li class="nav-item {{ page == 'staff' ? 'active' }}">
+              <a class="nav-link" href="staff.php">Pracownicy</a>
+            </li>
+            <li class="nav-item {{ page == 'clients' ? 'active' }}">
+              <a class="nav-link" href="clients.php">Klienci</a>
+            </li>
+            <li class="nav-item {{ page == 'productions' ? 'active' }}">
+              <a class="nav-link" href="productions.php">Produkcje</a>
+            </li>
+          </ul>
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="logout.php">Wyloguj</span></a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <main role="main" class="container">
+      {% block content %}{% endblock %}
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <span class="text-muted">&copy; 2018 Krzysztof Adamczyk</span>
+      </div>
+    </footer>
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'app.twig' %}
+{% set page = 'productions' %}
+
+{% block title %}Produkcje{% endblock %}
+
+{% block content %}
+    <h1 class="mt-5 mb-4">Produkcje</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Tytuł</th>
+                <th scope="col">Gatunek</th>
+                <th scope="col">Budżet</th>
+                <th scope="col">Premiera</th>
+                <th scope="col">Zlecający</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for production in productions %}
+                <tr>
+                    <td>{{ production.id }}</td>
+                    <td>{{ production.name }}</td>
+                    <td>{{ production.genre }}</td>
+                    <td>{{ production.costs }}</td>
+                    <td>{{ production.premiere }}</td>
+                    <td><a href="clients.php?id={{ production.contracting_id }}">{{ production.contracting_id }}</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

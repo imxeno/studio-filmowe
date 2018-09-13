@@ -8,9 +8,14 @@
 {% endblock %}
 
 {% block body %}
-    <form class="form-signin text-center">
+    <form class="form-signin text-center" method="POST">
         <img class="mb-4" src="img/logo.png" alt="" width="72" height="72">
         <h1 class="h3 mb-3 font-weight-normal">Studio filmowe "Beta"</h1>
+        {% if error %}
+            <div class="alert alert-danger" role="alert">
+                Wystąpił błąd podczas logowania. Sprawdź poprawność loginu i hasła.
+            </div>
+        {% endif %}
         <label for="login" class="sr-only">Nazwa użytkownika</label>
         <input type="text" name="login" id="login" class="form-control" placeholder="Nazwa użytkownika" required="required" autofocus="autofocus">
         <label for="password" class="sr-only">Hasło</label>
