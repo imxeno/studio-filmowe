@@ -33,7 +33,9 @@ if(isset($_POST["old_password"]) && isset($_POST["password"]) && isset($_POST["p
         exit();
     }
 
-    $DB->query("UPDATE users SET password=SHA2(CONCAT('" . $DB->escape_string($_POST["password"]) . "', salt), 512) "
+    $salt = generate_salt();
+
+    $DB->query("UPDATE users SET salt='" . $salt . "', password=SHA2(CONCAT('" . $DB->escape_string($_POST["password"]) . "', '" . $salt  . "'), 512) "
         . "WHERE id = " . intval($_SESSION["id"]));
 
     echo $twig->render('user.twig', array("user" => $user, "success" => "Hasło zostało zmienione."));

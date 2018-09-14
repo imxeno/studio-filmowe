@@ -18,6 +18,14 @@ if(isset($_POST["submit"])) {
     }
 
     if(intval($_POST["id"]) === 0) {
+        if(!isset($_POST["login"]) || $_POST["login"] === '') {
+            echo $twig->render('error.twig', array( 'error' => ("Nazwa użytkownika nowego pracownika nie może być pusta.")));
+            exit();
+        }
+        if(!isset($_POST["password"]) || $_POST["password"] === '') {
+            echo $twig->render('error.twig', array( 'error' => ("Hasło nowego pracownika nie może być puste.")));
+            exit();
+        }
         $DB->query("INSERT INTO users (`login`, `first_name`, `last_name`, `address`, `phone`, `position`, `salary`, `agreement_signed`, `agreement_expires`) VALUES (" 
         . "'" . $DB->escape_string($_POST["login"]). "', "
         . "'" . $DB->escape_string($_POST["first_name"]). "', "
@@ -29,9 +37,16 @@ if(isset($_POST["submit"])) {
         . "'" . $DB->escape_string($_POST["agreement_signed"]) . "', "
         . $agreement_expires
         . ");");
-        echo $DB->error;
-        redirect("staff.php?id=" . $DB->insert_id);
+        
+        $id = $DB->insert_id;
+        $salt = generate_salt();
+
+        $DB->query("UPDATE users SET salt='" . $salt . "', password=SHA2(CONCAT('" . $DB->escape_string($_POST["password"]) . "', '" . $salt  . "'), 512) "
+        . "WHERE id = " . $id) . " LIMIT 1";
+    
+        redirect("staff.php?id=" . $id);
     } else {
+        $id = intval($_POST["id"]);
         $DB->query("UPDATE users SET " 
         . "login='" . $DB->escape_string($_POST["login"]). "', "
         . "first_name='" . $DB->escape_string($_POST["first_name"]). "', "
@@ -42,8 +57,17 @@ if(isset($_POST["submit"])) {
         . "salary='" . $DB->escape_string($_POST["salary"]) . "', "
         . "agreement_signed='" . $DB->escape_string($_POST["agreement_signed"]) . "', "
         . "agreement_expires=" . $agreement_expires . " "
-        . " WHERE id = " . intval($_POST["id"]) . " LIMIT 1");
+        . " WHERE id = " . $id . " LIMIT 1");
+
+        if(isset($_POST["password"]) && $_POST["password"] !== '') {
+            $salt = generate_salt();
+    
+            $DB->query("UPDATE users SET salt='" . $salt . "', password=SHA2(CONCAT('" . $DB->escape_string($_POST["password"]) . "', '" . $salt  . "'), 512) "
+            . "WHERE id = " . $id) . " LIMIT 1";
+    
+        }
     }
+    
 }
 
 if(isset($_GET["new"])) {
