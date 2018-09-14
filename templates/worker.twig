@@ -6,31 +6,66 @@
 {% block content %}
     <h1 class="mt-5 mb-4">Pracownik #{{ worker.id }}</h1>
     <form>
-    <div class="form-group">
-        <label>Imię</label>
-        <input class="form-control" name="first_name" value="{{ worker.first_name }}" >
-    </div>
-    <div class="form-group">
-        <label>Nazwisko</label>
-        <input class="form-control" name="first_name" value="{{ worker.last_name }}" >
-    </div>
-    <div class="form-group">
-        <label>Adres</label>
-        <textarea class="form-control" name="address">{{ worker.address }}</textarea>
-    </div>
-    <div class="form-group">
-        <label>Telefon</label>
-        <input class="form-control" name="phone" value="{{ worker.phone }}" >
-    </div>
-    <div class="form-group">
-        <label>Stanowisko</label>
-        <select name="position" class="form-control">
-            {% for position in positions %}
-                <option value="{{position.id}}" {{position.id == worker.position ? 'selected'}}>{{position.name}}</option>
-            {% endfor %}
-        </select>
-    </div>
-    <button type="submit" class="btn btn-primary">Edytuj</button>
-    <button type="submit" class="btn btn-danger">Usuń</button>
+        <div class="form-group">
+            <label>Imię</label>
+            <input class="form-control" name="first_name" value="{{ worker.first_name }}" >
+        </div>
+        <div class="form-group">
+            <label>Nazwisko</label>
+            <input class="form-control" name="first_name" value="{{ worker.last_name }}" >
+        </div>
+        <div class="form-group">
+            <label>Adres</label>
+            <textarea class="form-control" name="address">{{ worker.address }}</textarea>
+        </div>
+        <div class="form-group">
+            <label>Telefon</label>
+            <input class="form-control" name="phone" value="{{ worker.phone }}" >
+        </div>
+        <div class="form-group">
+            <label>Stanowisko</label>
+            <select name="position" class="form-control">
+                {% for position in positions %}
+                    <option value="{{position.id}}" {{position.id == worker.position ? 'selected'}}>{{position.name}}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Pensja</label>
+            <div class="input-group">
+            <div class="input-group-prepend">
+                <div class="input-group-text">zł</div>
+            </div>
+            <input class="form-control" name="salary" value="{{ worker.salary }}" >
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Umowę podpisano</label>
+            <input type="datetime-local" class="form-control" name="agreement_signed" value="{{ worker.agreement_signed }}" >
+        </div>
+        <div class="form-group">
+            <label>Typ umowy</label>
+            <select id="agreement_type" name="agreement_type" class="form-control">
+                <option value="0" {{worker.agreement_expires == '' ? 'selected'}}>na czas nieokreślony</option>
+                <option value="1" {{worker.agreement_expires != '' ? 'selected'}}>na czas określony</option>
+            </select>
+        </div>
+        <div class="form-group" id="agreement_expires" style="display: none;">
+            <label>Umowa traci ważność</label>
+            <input type="datetime-local" class="form-control" name="agreement_expires" value="{{ worker.agreement_expires }}" >
+        </div>
+        <button type="submit" class="btn btn-primary">Edytuj</button>
+        <button type="submit" class="btn btn-danger">Usuń</button>
+        <script>
+            function onAgreementTypeChange() {
+                if($("#agreement_type").val() === "1") {
+                    $("#agreement_expires").css('display', 'block');
+                } else {
+                    $("#agreement_expires").css('display', 'none');
+                }
+            }
+            $("#agreement_type").change(() => onAgreementTypeChange());
+            onAgreementTypeChange();
+        </script>
     </form>
 {% endblock %}
