@@ -4,6 +4,19 @@ require_once(__DIR__ . "/../functions.php");
 
 redirect_if_not_logged_in();
 
+if(isset($_POST["submit"])) {
+    if(intval($_POST["id"]) === 0) {
+        $DB->query("INSERT INTO productions (`name`, `genre`, `premiere`, `costs`, `contracting_id`) VALUES ('" . $DB->escape_string($_POST["name"])
+        . "', '" . $DB->escape_string($_POST["genre"]) . "', '" . $DB->escape_string($_POST["premiere"]) . "', '" . $DB->escape_string($_POST["costs"])
+        . "', '" . $DB->escape_string($_POST["contracting_id"]) . "')");
+        redirect("productions.php?id=" . $DB->insert_id);
+    } else {
+        $DB->query("UPDATE productions SET `name`='" . $DB->escape_string($_POST["name"]) . "', `genre`='" . $DB->escape_string($_POST["genre"])
+        . "', premiere='" . $DB->escape_string($_POST["premiere"]) . "', costs='" . $DB->escape_string($_POST["costs"]) . "', contracting_id='"
+        . $DB->escape_string($_POST["contracting_id"]) . "' WHERE id = " . intval($_POST["id"]) . " LIMIT 1");
+    }
+}
+
 if(isset($_GET["new"])) {
     echo $twig->render('production.twig');
     exit();
@@ -22,6 +35,10 @@ else if(isset($_GET["id"])) {
          echo $twig->render('success.twig', array( 'msg' => ("Produkcja o ID #" . $id . " został usunięty z bazy danych.")));
          exit();
      }
+
+     $rgx = "/(\d+-\d+-\d+) (\d+:\d+):\d+/";
+     $rpl = "$1";
+     $res["premiere"] = preg_replace($rgx, $rpl, $res["premiere"]);
 
      echo $twig->render('production.twig', array('production' => $res));
      exit();

@@ -15,19 +15,19 @@
         <input type="hidden" name="id" value="{{ production.id }}" >
         <div class="form-group">
             <label>Tytuł</label>
-            <input class="form-control" name="first_name" value="{{ production.name }}">
+            <input class="form-control" name="name" value="{{ production.name }}">
         </div>
         <div class="form-group">
             <label>Gatunek</label>
-            <input class="form-control" name="first_name" value="{{ production.genre }}">
+            <input class="form-control" name="genre" value="{{ production.genre }}">
         </div>
         <div class="form-group">
             <label>Premiera</label>
-            <input class="form-control" name="address" value="{{ production.premiere }}"/>
+            <input type="date" class="form-control" name="premiere" value="{{ production.premiere }}"/>
         </div>
         <div class="form-group">
             <label>Budżet</label>
-            <input class="form-control" name="phone" value="{{ production.costs }}">
+            <input class="form-control" name="costs" value="{{ production.costs }}">
         </div>
         <div class="form-group">
             <label>ID zlecającego</label>
