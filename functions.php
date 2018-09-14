@@ -9,7 +9,7 @@ $twig = new Twig_Environment($loader, array(
     //'cache' => '/path/to/compilation_cache',
 ));
 
-$DB = mysqli_connect("217.182.77.253", "studio", "y9B94ffI1V02FHbS", "studio");
+$DB = mysqli_connect("host", "login", "password", "db");
 $DB->set_charset("utf8mb4");
 
 if(isset($_SESSION["id"])) {
