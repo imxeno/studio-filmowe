@@ -4,6 +4,17 @@ require_once(__DIR__ . "/../functions.php");
 
 redirect_if_not_logged_in();
 
+if(isset($_POST["submit"])) {
+    if(intval($_POST["id"]) === 0) {
+        $DB->query("INSERT INTO users (`first_name`, `last_name`, `address`, `phone`) VALUES ('" . $DB->escape_string($_POST["first_name"])
+        . "', '" . $DB->escape_string($_POST["last_name"]) . "', '" . $DB->escape_string($_POST["address"]) . "', '" . $DB->escape_string($_POST["phone"]) . "')");
+        redirect("clients.php?id=" . $DB->insert_id);
+    } else {
+        $DB->query("UPDATE users SET `first_name`='" . $DB->escape_string($_POST["first_name"]) . "', `last_name`='" . $DB->escape_string($_POST["last_name"])
+        . "', address='" . $DB->escape_string($_POST["address"]) . "', phone='" . $DB->escape_string($_POST["phone"]) . "' WHERE id = " . intval($_POST["id"]) . " LIMIT 1");
+    }
+}
+
 if(isset($_GET["new"])) {
     echo $twig->render('client.twig');
     exit();
