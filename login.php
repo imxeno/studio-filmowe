@@ -1,6 +1,6 @@
 <?php
 
-require_once(__DIR__ . "/../functions.php");
+require_once(__DIR__ . "/functions.php");
 
 if(isset($_POST["login"]) && isset($_POST["password"])) {
     $stmt = $DB->prepare("SELECT id FROM users WHERE login like ? AND password = SHA2(CONCAT(?, salt), 512) LIMIT 1");
