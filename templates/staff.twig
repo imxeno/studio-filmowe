@@ -9,7 +9,7 @@
             <h1>Pracownicy</h1>
         </div>
         <div class="col text-right">
-            <button class="btn btn-success">Dodaj</button>
+            <button class="btn btn-success" id="addNew">Dodaj</button>
         </div>
     </div>
     <table class="table">
@@ -38,4 +38,9 @@
             {% endfor %}
         </tbody>
     </table>
+    <script>
+        $("#addNew").click(() => {
+            window.location += "?new=1";
+        })
+    </script>
 {% endblock %}

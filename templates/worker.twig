@@ -4,7 +4,13 @@
 {% block title %}Pracownik{% endblock %}
 
 {% block content %}
-    <h1 class="mt-5 mb-4">Pracownik #{{ worker.id }}</h1>
+    <h1 class="mt-5 mb-4">
+        {% if worker.id is defined %}
+            Pracownik #{{ worker.id }}
+        {% else %}
+            Nowy pracownik
+        {% endif %}
+    </h1>
     <form>
         <div class="form-group">
             <label>Imię</label>
@@ -54,8 +60,12 @@
             <label>Umowa traci ważność</label>
             <input type="datetime-local" class="form-control" name="agreement_expires" value="{{ worker.agreement_expires }}" >
         </div>
+        {% if worker.id is defined %}
         <button type="submit" class="btn btn-primary">Edytuj</button>
         <button type="button" class="btn btn-danger" id="delete">Usuń</button>
+        {% else %}
+        <button type="submit" class="btn btn-primary">Dodaj</button>
+        {% endif %}
         <script>
             $("#delete").click(() => {
                 window.location = window.location + "&delete=1";

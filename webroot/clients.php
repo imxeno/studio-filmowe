@@ -4,7 +4,11 @@ require_once(__DIR__ . "/../functions.php");
 
 redirect_if_not_logged_in();
 
-if(isset($_GET["id"])) {
+if(isset($_GET["new"])) {
+    echo $twig->render('client.twig');
+    exit();
+}
+else if(isset($_GET["id"])) {
     $id = intval($_GET["id"]);
     $res = $DB->query("SELECT users.id, users.first_name, users.last_name, users.address, users.phone FROM users"
      . " INNER JOIN positions ON users.position = positions.id WHERE positions.access_level = 0 AND users.id = "

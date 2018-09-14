@@ -4,7 +4,13 @@
 {% block title %}Klient{% endblock %}
 
 {% block content %}
-    <h1 class="mt-5 mb-4">Klient #{{ client.id }}</h1>
+    <h1 class="mt-5 mb-4">
+        {% if client.id is defined %}
+            Klient #{{ client.id }}
+        {% else %}
+            Nowy klient
+        {% endif %}
+    </h1>
     <form>
         <div class="form-group">
             <label>Imię</label>
@@ -22,8 +28,12 @@
             <label>Telefon</label>
             <input class="form-control" name="phone" value="{{ client.phone }}">
         </div>
+        {% if client.id is defined %}
         <button type="submit" class="btn btn-primary">Edytuj</button>
         <button type="button" class="btn btn-danger" id="delete">Usuń</button>
+        {% else %}
+        <button type="submit" class="btn btn-primary">Dodaj</button>
+        {% endif %}
         <script>
             $("#delete").click(() => {
                 window.location = window.location + "&delete=1";

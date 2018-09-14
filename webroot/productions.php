@@ -4,7 +4,11 @@ require_once(__DIR__ . "/../functions.php");
 
 redirect_if_not_logged_in();
 
-if(isset($_GET["id"])) {
+if(isset($_GET["new"])) {
+    echo $twig->render('production.twig');
+    exit();
+}
+else if(isset($_GET["id"])) {
 
     $id = intval($_GET["id"]);
     $res = $DB->query("SELECT id, name, premiere, genre, costs, contracting_id FROM productions WHERE id = " . $id . " LIMIT 1")->fetch_assoc();

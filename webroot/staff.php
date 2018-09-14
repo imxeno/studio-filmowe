@@ -4,7 +4,11 @@ require_once(__DIR__ . "/../functions.php");
 
 redirect_if_not_logged_in();
 
-if(isset($_GET["id"])) {
+if(isset($_GET["new"])) {
+    echo $twig->render('worker.twig');
+    exit();
+}
+else if(isset($_GET["id"])) {
 
     $positions = $DB->query("SELECT id, name, access_level FROM positions WHERE access_level > 0 ORDER BY access_level DESC")->fetch_all(MYSQLI_ASSOC);
 
