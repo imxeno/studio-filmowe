@@ -12,6 +12,7 @@
         {% endif %}
     </h1>
     <form>
+        <input type="hidden" name="id" value="{{ worker.id }}" >
         <div class="form-group">
             <label>Imię</label>
             <input class="form-control" name="first_name" value="{{ worker.first_name }}" >
@@ -61,10 +62,10 @@
             <input type="datetime-local" class="form-control" name="agreement_expires" value="{{ worker.agreement_expires }}" >
         </div>
         {% if worker.id is defined %}
-        <button type="submit" class="btn btn-primary">Edytuj</button>
+        <button type="submit" name="submit" class="btn btn-primary">Edytuj</button>
         <button type="button" class="btn btn-danger" id="delete">Usuń</button>
         {% else %}
-        <button type="submit" class="btn btn-primary">Dodaj</button>
+        <button type="submit" name="submit" class="btn btn-primary">Dodaj</button>
         {% endif %}
         <script>
             $("#delete").click(() => {

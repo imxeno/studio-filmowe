@@ -12,6 +12,7 @@
         {% endif %}
     </h1>
     <form>
+        <input type="hidden" name="id" value="{{ production.id }}" >
         <div class="form-group">
             <label>Tytuł</label>
             <input class="form-control" name="first_name" value="{{ production.name }}">
@@ -33,10 +34,10 @@
             <input class="form-control" name="contracting_id" value="{{ production.contracting_id }}">
         </div>
         {% if production.id is defined %}
-        <button type="submit" class="btn btn-primary">Edytuj</button>
+        <button type="submit" name="submit" class="btn btn-primary">Edytuj</button>
         <button type="button" class="btn btn-danger" id="delete">Usuń</button>
         {% else %}
-        <button type="submit" class="btn btn-primary">Dodaj</button>
+        <button type="submit" name="submit" class="btn btn-primary">Dodaj</button>
         {% endif %}
         <script>
             $("#delete").click(() => {
