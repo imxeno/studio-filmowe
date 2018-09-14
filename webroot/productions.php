@@ -12,6 +12,13 @@ if(isset($_GET["id"])) {
         echo $twig->render('error.twig', array( 'error' => ("Produkcja o ID #" . $id . " nie istnieje.")));
         exit();
      }
+
+     if(isset($_GET["delete"])) {
+         $DB->query("DELETE FROM productions WHERE id = " . intval($id));
+         echo $twig->render('success.twig', array( 'msg' => ("Produkcja o ID #" . $id . " został usunięty z bazy danych.")));
+         exit();
+     }
+
      echo $twig->render('production.twig', array('production' => $res));
      exit();
 }

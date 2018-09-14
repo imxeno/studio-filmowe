@@ -13,6 +13,13 @@ if(isset($_GET["id"])) {
         echo $twig->render('error.twig', array( 'error' => ("Klient o ID #" . $id . " nie istnieje.")));
         exit();
      }
+
+     if(isset($_GET["delete"])) {
+         $DB->query("DELETE FROM users WHERE id = " . intval($id));
+         echo $twig->render('success.twig', array( 'msg' => ("Klient o ID #" . $id . " został usunięty z bazy danych.")));
+         exit();
+     }
+
      echo $twig->render('client.twig', array('client' => $res));
      exit();
 }

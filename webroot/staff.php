@@ -17,6 +17,13 @@ if(isset($_GET["id"])) {
         echo $twig->render('error.twig', array( 'error' => ("Pracownik o ID #" . $id . " nie istnieje.")));
         exit();
      }
+
+    if(isset($_GET["delete"])) {
+        $DB->query("DELETE FROM users WHERE id = " . intval($id));
+        echo $twig->render('success.twig', array( 'msg' => ("Pracownik o ID #" . $id . " został usunięty z bazy danych.")));
+        exit();
+    }
+
      $res["salary"] = number_format($res["salary"], 2, '.', '');
      $rgx = "/(\d+-\d+-\d+) (\d+:\d+):\d+/";
      $rpl = "$1T$2";

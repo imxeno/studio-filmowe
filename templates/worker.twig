@@ -55,8 +55,11 @@
             <input type="datetime-local" class="form-control" name="agreement_expires" value="{{ worker.agreement_expires }}" >
         </div>
         <button type="submit" class="btn btn-primary">Edytuj</button>
-        <button type="submit" class="btn btn-danger">Usuń</button>
+        <button type="button" class="btn btn-danger" id="delete">Usuń</button>
         <script>
+            $("#delete").click(() => {
+                window.location = window.location + "&delete=1";
+            })
             function onAgreementTypeChange() {
                 if($("#agreement_type").val() === "1") {
                     $("#agreement_expires").css('display', 'block');

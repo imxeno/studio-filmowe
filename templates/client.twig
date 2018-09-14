@@ -6,23 +6,28 @@
 {% block content %}
     <h1 class="mt-5 mb-4">Klient #{{ client.id }}</h1>
     <form>
-    <div class="form-group">
-        <label>Imię</label>
-        <input class="form-control" name="first_name" value="{{ client.first_name }}" >
-    </div>
-    <div class="form-group">
-        <label>Nazwisko</label>
-        <input class="form-control" name="first_name" value="{{ client.last_name }}" >
-    </div>
-    <div class="form-group">
-        <label>Adres</label>
-        <textarea class="form-control" name="address">{{ client.address }}</textarea>
-    </div>
-    <div class="form-group">
-        <label>Telefon</label>
-        <input class="form-control" name="phone" value="{{ client.phone }}" >
-    </div>
-    <button type="submit" class="btn btn-primary">Edytuj</button>
-    <button type="submit" class="btn btn-danger">Usuń</button>
+        <div class="form-group">
+            <label>Imię</label>
+            <input class="form-control" name="first_name" value="{{ client.first_name }}">
+        </div>
+        <div class="form-group">
+            <label>Nazwisko</label>
+            <input class="form-control" name="first_name" value="{{ client.last_name }}">
+        </div>
+        <div class="form-group">
+            <label>Adres</label>
+            <textarea class="form-control" name="address">{{ client.address }}</textarea>
+        </div>
+        <div class="form-group">
+            <label>Telefon</label>
+            <input class="form-control" name="phone" value="{{ client.phone }}">
+        </div>
+        <button type="submit" class="btn btn-primary">Edytuj</button>
+        <button type="button" class="btn btn-danger" id="delete">Usuń</button>
+        <script>
+            $("#delete").click(() => {
+                window.location = window.location + "&delete=1";
+            })
+        </script>
     </form>
 {% endblock %}
