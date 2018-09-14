@@ -106,4 +106,4 @@ $res = $DB->query("SELECT users.id, users.first_name, users.last_name, users.add
 
 $staff = $res->fetch_all(MYSQLI_ASSOC);
 
-echo $twig->render('staff.twig', array( 'staff' => $staff ));
+echo $twig->render('staff.twig', array( 'staff' => $staff, 'modify_access' => ($ACCESS_LEVEL > 200) ));

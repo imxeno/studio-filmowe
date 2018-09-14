@@ -12,6 +12,11 @@ $twig = new Twig_Environment($loader, array(
 $DB = mysqli_connect("217.182.77.253", "studio", "y9B94ffI1V02FHbS", "studio");
 $DB->set_charset("utf8mb4");
 
+if(isset($_SESSION["id"])) {
+    $ACCESS_LEVEL = intval($DB->query("SELECT positions.access_level FROM users INNER JOIN positions ON users.position = positions.id WHERE users.id = " . $_SESSION["id"] . " LIMIT 1")
+    ->fetch_assoc()["access_level"]);
+}
+
 function redirect($page) {
     header("Location: " . $page);
 }

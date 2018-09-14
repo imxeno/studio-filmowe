@@ -9,7 +9,9 @@
             <h1>Klienci</h1>
         </div>
         <div class="col text-right">
+        {% if modify_access %}
             <button class="btn btn-success" id="addNew">Dodaj</button>
+            {% endif %}
         </div>
     </div>
     <table class="table">
@@ -19,7 +21,9 @@
             <th scope="col">Imię</th>
             <th scope="col">Nazwisko</th>
             <th scope="col">Adres</th>
+        {% if modify_access %}
             <th scope="col">Szczegóły</th>
+            {% endif %}
             </tr>
         </thead>
         <tbody>
@@ -29,7 +33,9 @@
                     <td>{{ client.first_name }}</td>
                     <td>{{ client.last_name }}</td>
                     <td>{{ client.address }}</td>
+        {% if modify_access %}
                     <td><a href="clients.php?id={{client.id}}">Zobacz</a></td>
+            {% endif %}
                 </tr>
             {% endfor %}
         </tbody>

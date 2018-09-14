@@ -50,4 +50,4 @@ $res = $DB->query("SELECT productions.id, productions.name, productions.premiere
 
 $productions = $res->fetch_all(MYSQLI_ASSOC);
 
-echo $twig->render('productions.twig', array( 'productions' => $productions ));
+echo $twig->render('productions.twig', array( 'productions' => $productions, 'modify_access' => ($ACCESS_LEVEL > 200) ));

@@ -9,7 +9,9 @@
             <h1>Produkcje</h1>
         </div>
         <div class="col text-right">
+        {% if modify_access %}
             <button class="btn btn-success" id="addNew">Dodaj</button>
+            {% endif %}
         </div>
     </div>
     <table class="table">
@@ -20,8 +22,10 @@
                 <th scope="col">Gatunek</th>
                 <th scope="col">Budżet</th>
                 <th scope="col">Premiera</th>
+        {% if modify_access %}
                 <th scope="col">Zlecający</th>
                 <th scope="col">Szczegóły</th>
+                {% endif %}
             </tr>
         </thead>
         <tbody>
@@ -32,6 +36,7 @@
                     <td>{{ production.genre }}</td>
                     <td>{{ production.costs }}</td>
                     <td>{{ production.premiere }}</td>
+        {% if modify_access %}
                     <td>
                         <a href="clients.php?id={{ production.contracting_id }}">
                             {{production.contracting_first_name}}
@@ -42,6 +47,7 @@
                     <td>
                         <a href="productions.php?id={{ production.id }}">Zobacz</a>
                     </td>
+                    {% endif %}
                 </tr>
             {% endfor %}
         </tbody>

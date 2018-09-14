@@ -44,4 +44,4 @@ $res = $DB->query("SELECT users.id, users.first_name, users.last_name, users.add
 
 $clients = $res->fetch_all(MYSQLI_ASSOC);
 
-echo $twig->render('clients.twig', array( 'clients' => $clients ));
+echo $twig->render('clients.twig', array( 'clients' => $clients, 'modify_access' => ($ACCESS_LEVEL > 200) ));
