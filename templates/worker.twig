@@ -12,14 +12,28 @@
         {% endif %}
     </h1>
     <form method="POST">
-        <input type="hidden" name="id" value="{{ worker.id }}" >
+        <input type="hidden" name="id" value="{{ worker.id }}">
+        <div class="form-group">
+            <label>Nazwa użytkownika</label>
+            <input class="form-control" name="login" value="{{ worker.login }}">
+        </div>
+        <div class="form-group">
+            <label>
+                {% if worker.id is defined %}
+                    Nowe hasło (wprowadź aby zmienić)
+                {% else %}
+                    Hasło użytkownika
+                {% endif %}
+            </label>
+            <input class="form-control" name="password">
+        </div>
         <div class="form-group">
             <label>Imię</label>
-            <input class="form-control" name="first_name" value="{{ worker.first_name }}" >
+            <input class="form-control" name="first_name" value="{{ worker.first_name }}">
         </div>
         <div class="form-group">
             <label>Nazwisko</label>
-            <input class="form-control" name="last_name" value="{{ worker.last_name }}" >
+            <input class="form-control" name="last_name" value="{{ worker.last_name }}">
         </div>
         <div class="form-group">
             <label>Adres</label>
@@ -27,7 +41,7 @@
         </div>
         <div class="form-group">
             <label>Telefon</label>
-            <input class="form-control" name="phone" value="{{ worker.phone }}" >
+            <input class="form-control" name="phone" value="{{ worker.phone }}">
         </div>
         <div class="form-group">
             <label>Stanowisko</label>
@@ -40,15 +54,15 @@
         <div class="form-group">
             <label>Pensja</label>
             <div class="input-group">
-            <div class="input-group-prepend">
-                <div class="input-group-text">zł</div>
-            </div>
-            <input class="form-control" name="salary" value="{{ worker.salary }}" >
+                <div class="input-group-prepend">
+                    <div class="input-group-text">zł</div>
+                </div>
+                <input class="form-control" name="salary" value="{{ worker.salary }}">
             </div>
         </div>
         <div class="form-group">
             <label>Umowę podpisano</label>
-            <input type="datetime-local" class="form-control" name="agreement_signed" value="{{ worker.agreement_signed }}" >
+            <input type="date" class="form-control" name="agreement_signed" value="{{ worker.agreement_signed }}">
         </div>
         <div class="form-group">
             <label>Typ umowy</label>
@@ -59,20 +73,20 @@
         </div>
         <div class="form-group" id="agreement_expires" style="display: none;">
             <label>Umowa traci ważność</label>
-            <input type="datetime-local" class="form-control" name="agreement_expires" value="{{ worker.agreement_expires }}" >
+            <input type="date" class="form-control" name="agreement_expires" value="{{ worker.agreement_expires }}">
         </div>
         {% if worker.id is defined %}
-        <button type="submit" name="submit" class="btn btn-primary">Edytuj</button>
-        <button type="button" class="btn btn-danger" id="delete">Usuń</button>
+            <button type="submit" name="submit" class="btn btn-primary">Edytuj</button>
+            <button type="button" class="btn btn-danger" id="delete">Usuń</button>
         {% else %}
-        <button type="submit" name="submit" class="btn btn-primary">Dodaj</button>
+            <button type="submit" name="submit" class="btn btn-primary">Dodaj</button>
         {% endif %}
         <script>
             $("#delete").click(() => {
                 window.location = window.location + "&delete=1";
             })
             function onAgreementTypeChange() {
-                if($("#agreement_type").val() === "1") {
+                if ($("#agreement_type").val() === "1") {
                     $("#agreement_expires").css('display', 'block');
                 } else {
                     $("#agreement_expires").css('display', 'none');
